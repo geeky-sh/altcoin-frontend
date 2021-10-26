@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Welcome from './welcome';
+import Wallet from './wallet';
+
+class Index extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoggedIn: false
+    }
+    this.handleLogin = this.handleLogin.bind(this)
+  }
+
+  handleLogin() {
+    this.setState({
+      isLoggedIn: true
+    })
+  }
+
+  render() {
+    let element = <Welcome onLogin={this.handleLogin}/>
+    if (this.state.isLoggedIn) {
+      element = <Wallet/>
+    }
+    return element
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Index/>,
   document.getElementById('root')
 );
 
