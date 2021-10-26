@@ -7,8 +7,6 @@ class APIService {
         if (body) {
             requestOptions.body = JSON.stringify(body)
         }
-        console.log(localStorage.getItem('token'))
-        console.log("aith")
         if (use_auth) {
             requestOptions.headers['Authorization'] = "Bearer " + localStorage.getItem('token')
         }

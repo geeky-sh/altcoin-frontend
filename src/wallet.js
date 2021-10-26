@@ -11,6 +11,7 @@ class Wallet extends React.Component {
         wallet_amount: 0,
       }
       this.refreshUser = this.refreshUser.bind(this)
+      this.handleLogout = this.handleLogout.bind(this)
     }
     componentDidMount() {
       this.refreshUser()
@@ -18,6 +19,10 @@ class Wallet extends React.Component {
     refreshUser() {
       APIService.custom_request("GET", "user", true).then(
         response => response.json()).then(data => this.setState(data))
+    }
+    handleLogout() {
+      localStorage.removeItem("token")
+      this.props.onLogout()
     }
     render() {
       return (
@@ -29,6 +34,7 @@ class Wallet extends React.Component {
         <p>Wallet Amount</p>
         <p>{this.state.wallet_amount}</p>
         <Transaction refreshUser={this.refreshUser}/>
+        <a href="#" onClick={this.handleLogout}>logout</a>
         </div>
       )
     }

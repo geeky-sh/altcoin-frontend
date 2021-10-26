@@ -9,9 +9,10 @@ class Index extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: Boolean(localStorage.getItem('token'))
     }
     this.handleLogin = this.handleLogin.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   handleLogin() {
@@ -20,10 +21,17 @@ class Index extends React.Component {
     })
   }
 
+  handleLogout() {
+    this.setState({
+      isLoggedIn: false
+    })
+  }
+
+
   render() {
     let element = <Welcome onLogin={this.handleLogin}/>
     if (this.state.isLoggedIn) {
-      element = <Wallet/>
+      element = <Wallet onLogout={this.handleLogout}/>
     }
     return element
   }
