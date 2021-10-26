@@ -10,6 +10,7 @@ class Transaction extends React.Component {
     }
 
     componentDidMount() {
+      // commennted code not working
       // let pthis = this
       //   fetch("https://api.coincap.io/v2/rates/bitcoin").then(
       //     response => response.json()).then(data => pthis.setState({bitcoin_price: parseFloat(data.data.rateUsd)}))
